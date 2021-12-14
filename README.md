@@ -16,6 +16,18 @@ function App() {
 
 export default App; 
 ```
+
+```
+function DataFetch() {
+    return (
+      <div>
+        Dit is DataFetch
+      </div>
+    );
+  }
+  
+export default DataFetch;
+```
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
