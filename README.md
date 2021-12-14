@@ -77,7 +77,7 @@ Deze hook heeft een aantal overeenkomsten met hooks in Wordpress. Net als een Wo
 
 Net als bij een Wordpress hook kan je je eigen code aan useEffect toevoegen. Op het moment dat useEffect runt wordt jouw code dan ook uitgevoerd. 
 
-Om useEffect te kunnen gebruiken moet je useEffect eerst importeren. Zie de code hieronder. Daarna zet je de hook in je component (meteen onder function DataFetch). useEffect is nu klaar om te gebruiken. Als je nu eigen code binnenin de hook zet wordt die gerund wanneer useEffect runt. 
+Om useEffect te kunnen gebruiken moet je useEffect eerst importeren. Zie de code hieronder. Daarna zet je de hook in je component (meteen onder function DataFetch). useEffect is nu klaar om te gebruiken. Als je nu eigen code binnenin de hook zet wordt die gerund wanneer useEffect runt. Dat is de volgende stap. 
 ```
 mport React, {useEffect} from "react";
 
@@ -95,7 +95,7 @@ function DataFetch() {
 export default DataFetch;
 ```
 
-Dat is de volgende stap. We maken een functie die de data ophaalt (fetchData) en roepen die functie aan binnen de hook useEffect. Zie code hieronder. 
+We maken een functie die de data ophaalt (fetchData) en roepen die functie aan binnen de hook useEffect. Zie code hieronder. 
 
 ```
 import React, {useEffect} from "react";
@@ -127,14 +127,10 @@ export default DataFetch;
 
 FetchData haalt de JSON van de backend en logt die in de console. Verder niets. Je kan je data dus nog niet op je scherm zien (tenzij je de inspector opent uiteraard). De data gaan we vertonen in stap 4. 
 
+## Stap 4: toon de data in je component
 
-
-
-
-
-
-
-
+De app haalt dus een stuk JSON van de backend. De ‘backend’ is in dit geval de [JSON placeholder API](https://jsonplaceholder.typicode.com/). Dit is een online mock API die gratis te gebruiken is voor testdoeleinden. De data bestaat uit een lijst met fictieve ‘users’.  
+In plaats van direct naar de console te loggen, slaan we de data op in een variabele. Vervolgens laten we die variabele zien in onze JSX. Dit is de code die we hiervoor gebruiken. Alles wordt hieronder verder toegelicht. 
 ```
 import React, {useEffect, useState} from "react";
 
@@ -166,7 +162,30 @@ function DataFetch() {
   
 export default DataFetch;
 ```
+ 
+Om de data in een variabele op te kunnen slaan, moeten we opnieuw iets importeren: useState. Zie bovenste regel. Met die import kunnen we de syntax gebruiken die we hiervoor nodig hebben. 
 
+Deze syntax staat (onder andere) op de vierde regel. Die regel is interessant, want deze code doet een aantal dingen tegelijk:
+
+Hij declareert een variabele voor onze data. Die variabele heet myFetchedList.
+
+Vervolgens maakt hij een nieuwe functie aan: setMyFetchedList. Dit is een kant en klare functie. Deze functie kun je gebruiken om myFetchedList een nieuwe waarde mee te geven. Die methode hoef je dus niet zelf te schrijven. Dat doet React voor je. 
+
+Het laatste stukje syntax in de regel (useState([]) ) zet een lege lijst in deze net gemaakte variabele. 
+
+Die lege lijst is nu klaar om te vullen met opgehaalde users. Dat doen we als volgt: 
+
+In fetchData  vervangen we console.log(result) door setMyFetchedList(result). Hiermee pakken we de opgehaalde data (result) en zetten die in de variabele myFetchedList.  Hierbij wordt dus de kant en klare methode uit regel vier gebruikt (setMyFetchedList)  
+
+Nu wordt de lijst met users in onze variabele gezet, iedere keer dat hij wordt opgehaald. Die variabele kunnen we nu in de app laten zien. 
+
+We zetten de variabele in onze JSX. Vervolgens maken we daar een map van. Wat de map doet:  voor ieder item in de lijst maakt hij een list element die de naam van de user weergeeft. Dat zie je vervolgens in de browser.
+
+## Stap 5: Haal het ophalen en het vertonen van de data uit elkaar.
+
+De DataFetch component vervult nu twee taken tegelijk. Hij haalt de lijst met users van de backend op en vertoont die lijst vervolgens in de browser. Dat werkt op zich prima. Maar de React filosofie is dat de verschillende taken worden opgesplitst in componenten. Iedere taak heeft zijn eigen component. Dat wordt de volgende stap. 
+
+We gaan voor het vertonen van de users een nieuw component maken. Maak in je source map (waar ook App.js en DataFetch.js staan) een nieuwe file. Noem die User.js. Zet daar de volgende code in. 
 
 ```
 function User() {
@@ -179,6 +198,9 @@ function User() {
   
 export default User;
 ```
+
+Importeer de user nu in DataFetch.js (zie code hieronder). De JSX in dataFetch zet elke user nu in een list element. Vervang dat list element door een User component. Nu wordt er voor elke user in de lijst een User component gegenereerd. 
+
 ```
 import React, {useEffect, useState} from "react";
 import User from "./User";
@@ -211,6 +233,9 @@ function DataFetch() {
   
 export default DataFetch;
 ```
+In de browser zie je nu tien keer een User component. Dat is niet bijster interessant: elk user component is hetzelfde. We willen ook informatie van de user in het component laten zien. Daarvoor zullen we die informatie door moeten geven, van de DataFetch naar het User component. 
+
+Dat doen we als volgt. Zie code voorbeeld hieronder. Voeg in de eerste regel 1 van User.js (tussen de haakjes) het woordje props toe. Neem ook de code uit de JSX  over. React gaat nu even op zijn bek, maar dat is niet erg.
 
 ```
 function User(props) {
@@ -229,6 +254,9 @@ function User(props) {
 export default User;
 
 ```
+
+Voeg in de MyFetchedList.map in DataFetch.js het volgende stukje code toe: userProp={item}. Zie code hieronder. 
+
 ```
 import React, {useEffect, useState} from "react";
 import User from "./User";
@@ -261,6 +289,25 @@ function DataFetch() {
   
 export default DataFetch;
 ```
+
+
+Als het goed is doet React het nu weer. Wat je gedaan hebt: DataFetch maakt voor ieder item in de lijst met users een User Component. Via de nieuwe userProp krijgt ieder User component het bijbehorende user item nu mee. Die informatie kan het user component vervolgens vertonen in zijn JSX.
+Nu zien we in onze browser een mooie lijst met users: hun naam, hun usernaam, hun straat en hun ‘suite’. Nu wordt het tijd om wat interactiviteit toe te voegen. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```
 import React, {useEffect, useState} from "react";
