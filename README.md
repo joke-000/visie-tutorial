@@ -30,7 +30,9 @@ Open de nieuwe folder nu met je code editor. Als het goed is zie je de code file
 ## Stap 2: Maak een nieuwe component om je data op te halen.
 Open de file App js. Daar staat een hoop code die je niet nodig hebt. Haal die weg en vervang die voor het volgende.
 
-``` import './App.css';
+#### App.js
+``` 
+import './App.css';
 
 function App() {
   return (
@@ -44,6 +46,7 @@ export default App;
 ```
 Maak nu in de source folder (waar ook App.js in staat) een nieuwe file aan. Noem die file DataFetch.js. Zet het volgende in die file. 
 
+#### DataFetch.js
 ```
 function DataFetch() {
     return (
@@ -57,6 +60,7 @@ export default DataFetch;
 ```
 Zorg nu dat App.js de nieuwe component weergeeft.  Eerst importeer je de nieuwe file in je App.js (tweede regel). Vervolgens zet je het component in de JSX van App.js.
 
+#### App.js
 ```
 import './App.css';
 import DataFetch from './DataFetch';
@@ -83,6 +87,7 @@ Net als bij een Wordpress hook kan je je eigen code aan useEffect toevoegen. Op 
 
 Om useEffect te kunnen gebruiken moet je useEffect eerst importeren. Zie de code hieronder. Daarna zet je de hook in je component (meteen onder function DataFetch). useEffect is nu klaar om te gebruiken. Als je nu eigen code binnenin de hook zet wordt die gerund wanneer useEffect runt. Dat is de volgende stap. 
 
+#### DataFetch.js
 ```
 import React, {useEffect} from "react";
 
@@ -102,6 +107,7 @@ export default DataFetch;
 
 We maken een functie die de data ophaalt (fetchData). Vervolgens roepen we die functie aan binnen de hook useEffect. Zie code hieronder. 
 
+#### DataFetch.js
 ```
 import React, {useEffect} from "react";
 
@@ -137,6 +143,8 @@ FetchData haalt de JSON van de backend en logt die in de console. Verder niets. 
 De app haalt dus een stuk JSON van de backend. De ‘backend’ is in dit geval de [JSON placeholder API](https://jsonplaceholder.typicode.com/). Dit is een online mock API die gratis te gebruiken is voor testdoeleinden. De data bestaat uit een lijst met fictieve ‘users’.  
 
 In plaats van direct naar de console te loggen, slaan we de data op in een variabele. Vervolgens laten we die variabele zien in onze JSX. Dit is de code die we hiervoor gebruiken. Alles wordt hieronder verder toegelicht. 
+
+#### DataFetch.js
 ```
 import React, {useEffect, useState} from "react";
 
@@ -193,6 +201,7 @@ De DataFetch component vervult nu twee taken tegelijk. Hij haalt de lijst met us
 
 We gaan voor het vertonen van de users een nieuw component maken. Maak in je source map (waar ook App.js en DataFetch.js staan) een nieuwe file. Noem die User.js. Zet daar de volgende code in. 
 
+#### User.js
 ```
 function User() {
     return (
@@ -207,6 +216,7 @@ export default User;
 
 Importeer de user nu in DataFetch.js (zie code hieronder). De JSX in dataFetch zet elke user nu in een list element. Vervang dat list element door een User component. Nu wordt er voor elke user in de lijst een User component gegenereerd. 
 
+#### DataFetch.js
 ```
 import React, {useEffect, useState} from "react";
 import User from "./User";
@@ -243,6 +253,7 @@ In de browser zie je nu tien keer een User component. Dat is niet bijster intere
 
 Dat doen we als volgt. Zie code voorbeeld hieronder. Voeg in de eerste regel 1 van User.js (tussen de haakjes) het woordje props toe. Neem ook de code uit de JSX  over. React gaat nu even op zijn bek, maar dat is niet erg.
 
+#### User.js
 ```
 function User(props) {
     return (
@@ -263,6 +274,7 @@ export default User;
 
 Voeg in de MyFetchedList.map in DataFetch.js het volgende stukje code toe: ```userProp={item}```. Zie code hieronder. 
 
+#### DataFetch.js
 ```
 import React, {useEffect, useState} from "react";
 import User from "./User";
@@ -306,6 +318,8 @@ Onze interactiviteit bestaat uit een zoekfunctie. Je kan een user zoeken door zi
 Onze eerste stap is het filteren van de lijst. 
 
 In DataFetch.js voegen we de een paar nieuwe regels toe. Zie onderstaande code. 
+
+#### DataFetch.js
 ```
 import React, {useEffect, useState} from "react";
 import User from "./User";
@@ -347,6 +361,8 @@ Onze lijst wordt nu gefilterd. Alleen namen waar de string "clementin" in zit wo
 Dit filter is nu nog een hardcoded string. Willen we dit filter kunnen veranderen, dan moeten we er eerst een variabele van maken. Laten we die searchTerms noemen. 
 
 We maken die variabele met dezelfde syntax die we bij myFetchedList gebruikt hebben. Vervolgens zetten we die variabele in de filter. Zie code hieronder. 
+
+#### DataFetch.js
 ```
 import React, {useEffect, useState} from "react";
 import User from "./User";
@@ -392,6 +408,7 @@ Dat doen we als volgt (zie code hieronder)
 
 We voegen een zoekbalk toe aan de JSX (regel 30) Aan die zoekbalk voegen we een functie toe: ```onChange={(event)=>handleSearch(event)}```. 
 
+#### DataFetch.js
 ```
 import React, {useEffect, useState} from "react";
 import User from "./User";
