@@ -312,7 +312,7 @@ Als het goed is doet React het nu weer. Wat je gedaan hebt: DataFetch maakt voor
 
 Nu zien we in onze browser een mooie lijst met users: hun naam, hun usernaam, hun straat en hun ‘suite’. Nu wordt het tijd om wat interactiviteit toe te voegen. 
 
-## Stap 6 Voeg een zoekfunctie toe.
+## Stap 6 Voeg een zoekfunctie toe
 Onze interactiviteit bestaat uit een zoekfunctie. Je kan een user zoeken door zijn naam in te typen. Op basis van jouw zoekterm wordt de lijst gefilterd. Je ziet alleen nog maar de users bij wie de naam met jouw zoekterm overeenkomt. 
 
 Onze eerste stap is het filteren van de lijst. 
@@ -460,7 +460,7 @@ Met die waarde wordt vervolgens de waarde van de variabele SearchTerms gezet. Me
 
 En dus de lijst met users. Daarmee hebben we nu ook een stukje interactiviteit in de vorm van een zoekfunctie.
 
-## Stap 7 Ga nu zelf verder. 
+## Stap 7 Ga nu zelf verder 
 Als het goed is heb je nu een werkende React app. Basic, maar wel compleet. Hij haalt dingen van een backend, laat die dingen zien en voegt er nog een stukje interactiviteit aan toe. 
 
 De volgende oefening is om deze app zelf verder uit te breiden: meer interactiviteit, andere data, meer components, wat je maar verzinnen kan. 
