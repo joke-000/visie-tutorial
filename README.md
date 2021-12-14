@@ -1,5 +1,20 @@
 # Getting Started with Create React test
-``` code ```
+
+
+
+
+
+``` import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+    </div>
+  );
+}
+
+export default App; 
+```
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
