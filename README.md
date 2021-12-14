@@ -290,8 +290,8 @@ function DataFetch() {
 export default DataFetch;
 ```
 
-
 Als het goed is doet React het nu weer. Wat je gedaan hebt: DataFetch maakt voor ieder item in de lijst met users een User Component. Via de nieuwe userProp krijgt ieder User component het bijbehorende user item nu mee. Die informatie kan het user component vervolgens vertonen in zijn JSX.
+
 Nu zien we in onze browser een mooie lijst met users: hun naam, hun usernaam, hun straat en hun ‘suite’. Nu wordt het tijd om wat interactiviteit toe te voegen. 
 
 
