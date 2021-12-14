@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import User from "./User";
 
 function DataFetch() {
     const [ myFetchedList, setMyFetchedList] = useState([]);
@@ -19,7 +20,7 @@ function DataFetch() {
       <div>
         <ul>
           {myFetchedList.map((item) => 
-            <li key={item.id}>{item.name}</li>  
+            <User key={item.id} userProp={item}/>  
           )}
         </ul>
       </div>

@@ -146,6 +146,102 @@ function DataFetch() {
   
 export default DataFetch;
 ```
+
+
+```
+function User() {
+    return (
+      <div>
+        Dit is de user component
+      </div>
+    );
+  }
+  
+export default User;
+```
+```
+import React, {useEffect, useState} from "react";
+import User from "./User";
+
+function DataFetch() {
+    const [ myFetchedList, setMyFetchedList] = useState([]);
+    useEffect(() => {
+        fetchData();
+    },[]);
+
+    function fetchData(){
+        const url = `https://jsonplaceholder.typicode.com/users`;
+        fetch(url)
+            .then((result) => result.json())
+            .then((result) => {
+                setMyFetchedList(result);
+            });
+      }
+    
+    return (
+      <div>
+        <ul>
+          {myFetchedList.map((item) => 
+            <User key={item.id}/>  
+          )}
+        </ul>
+      </div>
+    );
+  }
+  
+export default DataFetch;
+```
+
+```
+function User(props) {
+    return (
+      <div>
+         <div>
+            <h3>{props.userProp.name}</h3>
+            <p>Username: {props.userProp.username}</p>
+            <p>Street: {props.userProp.address.street}</p>
+            <p>Suite: {props.userProp.address.suite}</p>
+        </div>
+      </div>
+    );
+  }
+  
+export default User;
+
+```
+```
+import React, {useEffect, useState} from "react";
+import User from "./User";
+
+function DataFetch() {
+    const [ myFetchedList, setMyFetchedList] = useState([]);
+    useEffect(() => {
+        fetchData();
+    },[]);
+
+    function fetchData(){
+        const url = `https://jsonplaceholder.typicode.com/users`;
+        fetch(url)
+            .then((result) => result.json())
+            .then((result) => {
+                setMyFetchedList(result);
+            });
+      }
+    
+    return (
+      <div>
+        <ul>
+          {myFetchedList.map((item) => 
+            <User key={item.id} userProp={item}/>  
+          )}
+        </ul>
+      </div>
+    );
+  }
+  
+export default DataFetch;
+```
+
 ## Stap 3: haal de data op 
 
 Nu gaan we de zorgen dat de DataFetch component ook daadwerkelijk data ophaalt. Zie de code hieronder.  Bovenaan DataFetch wordt nieuwe regel toegevoegd. Met deze regel importeer je useEffect. 
