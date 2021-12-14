@@ -1,9 +1,11 @@
 import './App.css';
+import DataFetch from './DataFetch';
  
 function App() {
   return (
     <div className="App">
-      Dit is App js 
+      dit is App.js
+      <DataFetch />
     </div>
   );
 }

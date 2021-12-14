@@ -28,6 +28,26 @@ function DataFetch() {
   
 export default DataFetch;
 ```
+
+
+```
+import './App.css';
+import DataFetch from './DataFetch';
+ 
+function App() {
+  return (
+    <div className="App">
+      dit is App.js
+      <DataFetch />
+    </div>
+  );
+}
+
+export default App;
+```
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
