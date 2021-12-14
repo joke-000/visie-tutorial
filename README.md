@@ -11,7 +11,9 @@ Als je al eens een React app aangemaakt hebt (met create-react-app) kun je stap 
 ## Stap 1: App aanmaken
 Open een terminal. Maak in de terminal een nieuwe folder waar je je app in wil maken . Of, als je een bestaande folder wil gebruiken, ga naar die bestaande folder met het command cd bestaande-folder.
 Voer daarna het volgende commando in: 
+
 ```npx create-react-app my-app ```
+
 (voor my-app kun je een eigen titel invullen, hoe je de app ook maar wilt noemen)
 
 Het kan zijn dat je om toestemming gevraagd wordt om React te installeren. Je antwoord is dan uiteraard een ‘yes’.
@@ -49,7 +51,7 @@ function DataFetch() {
   
 export default DataFetch;
 ```
-Zorg nu dat App.js de nieuwe component weergeeft.  Eerst importeer je de nieuwe file in je App.js (tweede regel). Vervolgens zet je het component in je tsx  (regel 8).
+Zorg nu dat App.js de nieuwe component weergeeft.  Eerst importeer je de nieuwe file in je App.js (tweede regel). Vervolgens zet je het component in de JSX van App.js.
 
 ```
 import './App.css';
@@ -66,9 +68,16 @@ function App() {
 
 export default App;
 ```
+## Stap 3: haal de data op 
+Nu gaan we er voor zorgen dat de DataFetch component ook daadwerkelijk JSON data op gaat halen.
+Wat dit betekent: Op het moment dat deze component geladen wordt, wil je dat hij een fetch doet naar de backend. 
+Hiervoor gebruik je een React hook, useEffect. 
 
+Deze hook heeft een aantal overeenkomsten met hooks in Wordpress. Net als een Wordpress hook is useEffect een stuk code dat op een specifiek moment wordt uitgevoerd. UseEffect runt iedere keer dat het component geladen wordt. Dat is precies het moment waarop wij de data willen ophalen.  
 
+Net als bij een Wordpress hook kan je je eigen code aan useEffect toevoegen. Op het moment dat useEffect runt wordt jouw code dan ook uitgevoerd. 
 
+Om useEffect te kunnen gebruiken moet je useEffect eerst importeren. Zie de code hieronder. Daarna zet je de hook in je component (meteen onder function DataFetch). useEffect is nu klaar om te gebruiken. Als je nu eigen code binnenin de hook zet wordt die gerund wanneer useEffect runt. 
 ```
 mport React, {useEffect} from "react";
 
@@ -85,6 +94,8 @@ function DataFetch() {
   
 export default DataFetch;
 ```
+
+Dat is de volgende stap. We maken een functie die de data ophaalt (fetchData) en roepen die functie aan binnen de hook useEffect. Zie code hieronder. 
 
 ```
 import React, {useEffect} from "react";
@@ -113,6 +124,15 @@ function DataFetch() {
 export default DataFetch;
 
 ```
+
+FetchData haalt de JSON van de backend en logt die in de console. Verder niets. Je kan je data dus nog niet op je scherm zien (tenzij je de inspector opent uiteraard). De data gaan we vertonen in stap 4. 
+
+
+
+
+
+
+
 
 
 ```
@@ -366,7 +386,7 @@ function DataFetch() {
 export default DataFetch;
 ```
 
-## Stap 3: haal de data op 
+
 
 Nu gaan we de zorgen dat de DataFetch component ook daadwerkelijk data ophaalt. Zie de code hieronder.  Bovenaan DataFetch wordt nieuwe regel toegevoegd. Met deze regel importeer je useEffect. 
 Je gaat useEffect gebruiken om je data op te halen. 
