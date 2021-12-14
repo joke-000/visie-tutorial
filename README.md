@@ -242,6 +242,85 @@ function DataFetch() {
 export default DataFetch;
 ```
 
+```
+import React, {useEffect, useState} from "react";
+import User from "./User";
+
+function DataFetch() {
+    const [ myFetchedList, setMyFetchedList] = useState([]);
+    useEffect(() => {
+        fetchData();
+    },[]);
+
+    function fetchData(){
+        const url = `https://jsonplaceholder.typicode.com/users`;
+        fetch(url)
+            .then((result) => result.json())
+            .then((result) => {
+                setMyFetchedList(result);
+            });
+      }
+    
+    return (
+      <div>
+        <ul>
+          {myFetchedList
+          .filter((item) => 
+            (item.name.toLowerCase().includes("clementin") )  
+          )
+          .map((item) => 
+            <User key={item.id} userProp={item}/>  
+          )}
+        </ul>
+      </div>
+    );
+  }
+  
+export default DataFetch;
+```
+
+
+```
+import React, {useEffect, useState} from "react";
+import User from "./User";
+
+function DataFetch() {
+    const [ myFetchedList, setMyFetchedList] = useState([]);
+    const [ searchTerms, setSearchTerms]= useState(""); 
+    
+
+    useEffect(() => {
+        fetchData();
+    },[]);
+
+    function fetchData(){
+        const url = `https://jsonplaceholder.typicode.com/users`;
+        fetch(url)
+            .then((result) => result.json())
+            .then((result) => {
+                setMyFetchedList(result);
+            });
+      }
+    
+    return (
+      <div>
+        <ul>
+          {myFetchedList
+          .filter((item) => 
+            (item.name.toLowerCase().includes(searchTerms))  
+          )
+          .map((item) => 
+            <User key={item.id} userProp={item}/>  
+          )}
+        </ul>
+      </div>
+    );
+  }
+  
+export default DataFetch;
+
+```
+
 ## Stap 3: haal de data op 
 
 Nu gaan we de zorgen dat de DataFetch component ook daadwerkelijk data ophaalt. Zie de code hieronder.  Bovenaan DataFetch wordt nieuwe regel toegevoegd. Met deze regel importeer je useEffect. 

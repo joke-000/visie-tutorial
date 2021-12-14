@@ -3,6 +3,9 @@ import User from "./User";
 
 function DataFetch() {
     const [ myFetchedList, setMyFetchedList] = useState([]);
+    const [ searchTerms, setSearchTerms]= useState(""); 
+    
+
     useEffect(() => {
         fetchData();
     },[]);
@@ -19,7 +22,11 @@ function DataFetch() {
     return (
       <div>
         <ul>
-          {myFetchedList.map((item) => 
+          {myFetchedList
+          .filter((item) => 
+            (item.name.toLowerCase().includes(searchTerms))  
+          )
+          .map((item) => 
             <User key={item.id} userProp={item}/>  
           )}
         </ul>
