@@ -1,8 +1,28 @@
-# Getting Started with Create React test
+# Tutorial: Hoe bouw ik een basic (maar complete) React app?
 
+In deze tutorial vind je een stappenplan voor het maken van een eenvoudige React app.
 
+Deze app haalt een JSON file op van een externe API. Hij geeft die inhoud vervolgens weer in een lijst. Aan die lijst wordt vervolgens ook nog wat interactiviteit toegevoegd in de vorm van een zoekfunctie.
 
+Deze zaken (Data ophalen, tonen, interactiviteit) komen bijna altijd terug in React apps. Als je dit kunt bouwen heb je de basis van het gemiddelde React project. Die basis kun je dan vervolgens uitbouwen naar iets groters.
 
+Als je al eens een React app aangemaakt hebt (met create-react-app) kun je stap 1 overslaan.
+
+## Stap 1: App aanmaken
+Open een terminal. Maak in de terminal een nieuwe folder waar je je app in wil maken . Of, als je een bestaande folder wil gebruiken, ga naar die bestaande folder met het command cd bestaande-folder.
+Voer daarna het volgende commando in: 
+```npx create-react-app my-app ```
+(voor my-app kun je een eigen titel invullen, hoe je de app ook maar wilt noemen)
+
+Het kan zijn dat je om toestemming gevraagd wordt om React te installeren. Je antwoord is dan uiteraard een ‘yes’.
+Als de installatie klaar is, zie je een nieuwe folder.  Ga met je terminal daarin. Geef dan het commando ‘npm start’. De nieuwe app opent vanzelf. Je kunt hem stoppen door in de terminal control c in te drukken.
+Zie ook [dit artikel:](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/react-on-windows) 
+ 
+
+Open de nieuwe folder nu met je code editor. Als het goed is zie je de code files. Je kunt nu beginnen met coden.
+
+## Stap 2: Maak een nieuwe component om je data op te halen.
+Open de file App js. Daar staat een hoop code die je niet nodig hebt. Haal die weg en vervang die voor het volgende.
 
 ``` import './App.css';
 
@@ -16,6 +36,7 @@ function App() {
 
 export default App; 
 ```
+Maak nu in de source folder (waar ook App.js in staat) een nieuwe file aan. Noem die file DataFetch.js. Zet het volgende in die file. 
 
 ```
 function DataFetch() {
@@ -28,7 +49,7 @@ function DataFetch() {
   
 export default DataFetch;
 ```
-
+Zorg nu dat App.js de nieuwe component weergeeft.  Eerst importeer je de nieuwe file in je App.js (tweede regel). Vervolgens zet je het component in je tsx  (regel 8).
 
 ```
 import './App.css';
@@ -46,6 +67,10 @@ function App() {
 export default App;
 ```
 
+## Stap 3: haal de data op 
+
+Nu gaan we de zorgen dat de DataFetch component ook daadwerkelijk data ophaalt. Zie de code hieronder.  Bovenaan DataFetch wordt nieuwe regel toegevoegd. Met deze regel importeer je useEffect. 
+Je gaat useEffect gebruiken om je data op te halen. 
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
