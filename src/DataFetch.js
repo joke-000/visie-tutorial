@@ -1,6 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 
 function DataFetch() {
+    const [ myFetchedList, setMyFetchedList] = useState([]);
     useEffect(() => {
         fetchData();
     },[]);
@@ -10,13 +11,17 @@ function DataFetch() {
         fetch(url)
             .then((result) => result.json())
             .then((result) => {
-                console.log(result);
+                setMyFetchedList(result);
             });
       }
     
     return (
       <div>
-        Dit is DataFetch
+        <ul>
+          {myFetchedList.map((item) => 
+            <li key={item.id}>{item.name}</li>  
+          )}
+        </ul>
       </div>
     );
   }
