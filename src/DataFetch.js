@@ -17,10 +17,17 @@ function DataFetch() {
             .then((result) => {
                 setMyFetchedList(result);
             });
-      }
+    }
+
+    function handleSearch(event) {
+        console.log(event.target.value);
+        setSearchTerms(event.target.value.toLowerCase());
+    }
     
     return (
       <div>
+        <p>Zoek op naam</p>
+            <input type='text' onChange={(event)=>handleSearch(event)}></input>
         <ul>
           {myFetchedList
           .filter((item) => 
